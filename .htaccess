@@ -1,5 +1,10 @@
-<ifModule mod_rewrite.c>
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
     RewriteEngine On
-    RewriteCond %{REQUEST_URL} !^/public/
-    RewriteRule ^(.*)$ /public/$1 [L]
-</ifModule>
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
